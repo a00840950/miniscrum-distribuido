@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniScrum Distribuido</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="header">
+      <h1>MiniScrum Distribuido</h1>
+      <p>CRUD de tareas con PHP, prediccion con Python y Gateway con Node.js.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Nueva tarea</h2>
+
+      <form id="taskForm">
+        <label for="title">Titulo</label>
+        <input id="title" name="title" type="text" required>
+
+        <label for="description">Descripcion</label>
+        <textarea id="description" name="description" rows="3"></textarea>
+
+        <label for="estimatedHours">Horas estimadas</label>
+        <input id="estimatedHours" name="estimatedHours" type="number" min="1" step="0.5" required>
+
+        <button type="button" id="predictButton">Predecir puntos</button>
+
+        <p id="predictionResult">Puntos sugeridos: pendiente</p>
+
+        <button type="submit">Guardar tarea</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Tareas registradas</h2>
+      <div id="tasksList"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
