@@ -1,0 +1,42 @@
+services:
+  gateway:
+    build: ./gateway
+    container_name: miniscrum_gateway
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      PHP_API_URL: http://php-api
+      PYTHON_ML_URL: http://python-ml:8000
+    depends_on:
+      - php-api
+      - python-ml
+
+  php-api:
+    build: ./php-api
+    container_name: miniscrum_php_api
+    environment:
+      DB_HOST: mysql
+      DB_NAME: miniscrum
+      DB_USER: root
+      DB_PASSWORD: root
+    depends_on:
+      - mysql
+
+  python-ml:
+    build: ./python-ml
+    container_name: miniscrum_python_ml
+
+  mysql:
+    image: mysql:8.0
+    container_name: miniscrum_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: miniscrum
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  mysql_data:
