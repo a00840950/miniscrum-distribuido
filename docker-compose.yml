@@ -4,7 +4,7 @@ services:
     expose:
       - "3000"
     environment:
-      PORT: 3026:3000
+      PORT: 3000
       PHP_API_URL: http://php-api
       PYTHON_ML_URL: http://python-ml:8000
     depends_on:
